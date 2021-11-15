@@ -1,16 +1,19 @@
 package ohtu.verkkokauppa;
 
 import java.util.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class Varasto implements VarastoRaja, KirjanpitoRaja {
+@Component
+public class Varasto implements VarastoRaja {
 
-
+    @Autowired
     private KirjanpitoRaja kirjanpito;
-    private HashMap<Tuote, Integer> saldot;  
     
-    public Varasto(Kirjanpito kirjanpito) {
-        this.kirjanpito = kirjanpito;
-        saldot = new HashMap<Tuote, Integer>();
+    private HashMap<Tuote, Integer> saldot;
+    
+    public Varasto() {
+        this.saldot = new HashMap<>();
         alustaTuotteet();
     }
             
@@ -25,7 +28,7 @@ public class Varasto implements VarastoRaja, KirjanpitoRaja {
 
     @Override
     public int saldo(int id){
-        return saldot.get(haeTuote(id));
+        return this.saldot.get(haeTuote(id));
     }
     
     @Override
@@ -48,13 +51,5 @@ public class Varasto implements VarastoRaja, KirjanpitoRaja {
         saldot.put(new Tuote(5, "Weihenstephaner Hefeweisse", 4), 15);
     }
 
-    @Override
-    public ArrayList<String> getTapahtumat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void lisaaTapahtuma(String tapahtuma) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 }

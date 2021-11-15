@@ -1,20 +1,23 @@
 package ohtu.verkkokauppa;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class Kauppa implements PankkiRaja, VarastoRaja, ViitegeneraattoriRaja{
+@Component
+public class Kauppa {
 
-    private VarastoRaja varasto;
-    private PankkiRaja pankki;
-    private Ostoskori ostoskori;
-    private ViitegeneraattoriRaja viitegeneraattori;
-    private String kaupanTili;
-
-    public Kauppa(Varasto varasto, Pankki pankki, Viitegeneraattori viitegeneraattori ) {
-        this.varasto = varasto;
-        this.pankki = pankki;
-        this.viitegeneraattori = viitegeneraattori;
-        kaupanTili = "33333-44455";
-    }
+        @Autowired
+        private VarastoRaja varasto;
+        @Autowired
+        private PankkiRaja pankki;
+        
+        private Ostoskori ostoskori;
+        
+        @Autowired
+        private ViitegeneraattoriRaja viitegeneraattori;
+        
+        private String kaupanTili =  "33333-44455";
+  
 
     public void aloitaAsiointi() {
         ostoskori = new Ostoskori();
@@ -22,6 +25,7 @@ public class Kauppa implements PankkiRaja, VarastoRaja, ViitegeneraattoriRaja{
 
     public void poistaKorista(int id) {
         Tuote t = varasto.haeTuote(id); 
+        ostoskori.poista(t);
         varasto.palautaVarastoon(t);
     }
 
@@ -39,37 +43,5 @@ public class Kauppa implements PankkiRaja, VarastoRaja, ViitegeneraattoriRaja{
         
         return pankki.tilisiirto(nimi, viite, tiliNumero, kaupanTili, summa);
     }
-
-    @Override
-    public boolean tilisiirto(String nimi, int viitenumero, String tililta, String tilille, int summa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Tuote haeTuote(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void otaVarastosta(Tuote t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void palautaVarastoon(Tuote t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int saldo(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int uusi() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
- 
 
 }

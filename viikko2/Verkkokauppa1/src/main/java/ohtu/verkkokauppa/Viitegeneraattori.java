@@ -1,12 +1,12 @@
 package ohtu.verkkokauppa;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Viitegeneraattori implements ViitegeneraattoriRaja {
 
-    private int seuraava;
-    
-    public Viitegeneraattori(){
-        seuraava = 1;    
-    }
+    private int seuraava = 1;
+
     
     @Override
     public int uusi(){
