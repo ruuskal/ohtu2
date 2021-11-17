@@ -2,7 +2,12 @@ package ohtu;
 
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import org.apache.http.client.fluent.Request;
+
+
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -15,12 +20,26 @@ public class Main {
 
         Gson mapper = new Gson();
         Player[] players = mapper.fromJson(bodyText, Player[].class);
+   
+        ArrayList <Player> finns = new ArrayList<>();
+        for (Player player: players) {
+            if (player.isFinn() == true) {
+                finns.add(player);
+            }
+        }
         
-        System.out.println("Oliot:");
-        for (Player player : players) {
-            System.out.println(player);
-        }   
+        finns.sort(Comparator.comparing(Player::getPoints).reversed());
+        System.out.printf("%-30s%-12s%-12s%-12s\n", "Nimi ", "Maalit ", "Syötöt ", "Yhteensä");
+        for ( Player player : finns) {
+            System.out.printf("%-30s%-12d%-12d%-12d\n", player.getName(), player.getGoals(), 
+            player.getAssists(), player.getPoints() );
+        }
+        
+
+
+
     }
+
   
 }
 

@@ -4,8 +4,8 @@ package ohtu;
 public class Player {
     private String name;
     private String nationality;
-    private String assists;
-    private String goals;
+    private int assists;
+    private int goals;
     private String penalties;
     private String team;
     private String games;
@@ -17,6 +17,26 @@ public class Player {
     public String getName() {
         return name;
     }
+
+    public boolean isFinn() {
+        if (nationality.equals("FIN")) {
+            return true;
+        }
+        return false;
+    }
+
+    public int getGoals() {
+        return goals;
+    }
+
+    public int getAssists() {
+        return assists;
+    }
+
+    public int getPoints() {
+        return goals + assists;
+    }
+
 
     @Override
     public String toString() {
