@@ -47,24 +47,14 @@ public class Stepdefs {
 
     //************************/
     
-    @Given("^command new is selected$")
+    @Given("command new is selected")
     public void commandNewSelected() throws Throwable {
         inputLines.add("new");
     }
 
-   // viimeinen kohta ei toimi
-   
-    // @Given("^Given user 'eero' with password 'salainen1' is created$")
-    // public void eeroIsCreated() throws Throwable {
-    //     commandNewSelected();
-    //     usernameAndPasswordAreEntered("eero", "salainen1");
-    
-
-    // }
- 
-
-
-
-
-
+    @Given("user {string} with password {string} is created")
+    public void newUserIsCreatedSuccessfully(String username, String password) throws Throwable {
+        commandNewSelected();
+        usernameAndPasswordAreEntered(username, password);
+    } 
 }

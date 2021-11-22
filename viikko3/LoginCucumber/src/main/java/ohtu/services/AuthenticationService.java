@@ -50,7 +50,7 @@ public class AuthenticationService {
         }
 
 
-        if (username.length() < 4 || !username.matches("[a-z]*")) {
+        if (username.length() < 3 || !username.matches("[a-z]*")) {
             return true;
         } else if (password.length() < 9) {
             return true;
