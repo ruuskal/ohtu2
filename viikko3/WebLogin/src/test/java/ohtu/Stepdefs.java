@@ -94,7 +94,32 @@ public class Stepdefs {
     }
     
     
+    // ***** Tehtävä 11 *****
+    
+   @Given("user with username {string} with password {string} is successfully created")
+    public void newUserIsSuccessfullyCreated(String username, String password) {
+        driver.get(baseUrl);
+        WebElement element = driver.findElement(By.linkText("register new user"));       
+        element.click();
+       
+        newUserWith(username, password, true);
+    }
+    
+    @Given("user with username {string} and password {string} is tried to be created")
+    public void newUserIsTriedToBeCreated(String username, String password) {
+        newUserIsSelected();
+        newUserWith(username, password, true);
+    }
+           
+    @When("invalid username {string} and invalid password {string} are given")
+     public void invalidUsernameAnsInvalidPasswordAreGiven(String username, String password) {
+         logInWith(username, password);
+     }   
+
+     
     // *****
+    
+    
     
     
     @After

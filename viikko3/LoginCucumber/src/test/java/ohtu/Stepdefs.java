@@ -43,6 +43,28 @@ public class Stepdefs {
     @Then("system will respond with {string}")
     public void systemWillRespondWith(String expectedOutput) {
         assertTrue(io.getPrints().contains(expectedOutput));
-    }    
+    }   
+
+    //************************/
+    
+    @Given("^command new is selected$")
+    public void commandNewSelected() throws Throwable {
+        inputLines.add("new");
+    }
+
+   // viimeinen kohta ei toimi
+   
+    // @Given("^Given user 'eero' with password 'salainen1' is created$")
+    // public void eeroIsCreated() throws Throwable {
+    //     commandNewSelected();
+    //     usernameAndPasswordAreEntered("eero", "salainen1");
+    
+
+    // }
+ 
+
+
+
+
 
 }

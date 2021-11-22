@@ -33,7 +33,7 @@ public class AuthenticationService {
         
         // ***** omaa koodia *****
         
-        if (username.length() < 4 || !username.matches("[a-z]*")) {
+        if (username.length() < 3 || !username.matches("[a-z]*")) {
             status.addError("username should have at least 3 characters");
         } 
 
