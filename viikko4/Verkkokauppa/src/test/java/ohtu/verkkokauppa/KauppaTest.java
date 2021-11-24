@@ -83,4 +83,41 @@ public class KauppaTest {
         
     }
     
+    @Test
+    public void aloitaAsiointiNollaaEdellisenAsiakkaan() {
+        when(varasto.saldo(anyInt())).thenReturn(10);
+        
+        k.aloitaAsiointi();
+        k.lisaaKoriin(3);
+        
+        verify(varasto, times(1)).otaVarastosta(any());
+        
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.tilimaksu("pekka", "12345");
+       
+        verify(pankki).tilisiirto(eq("pekka"), anyInt(), eq("12345"), anyString(), eq(5));   
+       
+        
+    }
+    
+    @Test
+    public void uusiViitenumeroJokaMaksutapahtumalle() {
+        when(varasto.saldo(anyInt())).thenReturn(10);
+        
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.tilimaksu("pekka", "12345");
+        
+        verify(viite, times(1)).uusi();
+        
+        k.aloitaAsiointi();
+        k.lisaaKoriin(2);
+        k.tilimaksu("lissu", "12346");
+        
+        verify(viite, times(2)).uusi();
+        
+        
+    }
+    
 }
