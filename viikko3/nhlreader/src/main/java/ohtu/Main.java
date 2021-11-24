@@ -28,12 +28,23 @@ public class Main {
             }
         }
         
-        finns.sort(Comparator.comparing(Player::getPoints).reversed());
-        System.out.printf("%-30s%-12s%-12s%-12s\n", "Nimi ", "Maalit ", "Syötöt ", "Yhteensä");
-        for ( Player player : finns) {
-            System.out.printf("%-30s%-12d%-12d%-12d\n", player.getName(), player.getGoals(), 
-            player.getAssists(), player.getPoints() );
+        String s = "uuuuu";
+        if (!s.matches("[a-z]*") || s.length() < 4) {
+            System.out.println("HELLOOOOOO");
         }
+        
+        for (char c : s.toCharArray()) {
+            if(!Character.isLetter(c)) {
+                System.out.println("ei ole kirjain");
+            }
+        }
+        
+//        finns.sort(Comparator.comparing(Player::getPoints).reversed());
+//        System.out.printf("%-30s%-12s%-12s%-12s\n", "Nimi ", "Maalit ", "Syötöt ", "Yhteensä");
+//        for ( Player player : finns) {
+//            System.out.printf("%-30s%-12d%-12d%-12d\n", player.getName(), player.getGoals(), 
+//            player.getAssists(), player.getPoints() );
+//        }
         
 
 
