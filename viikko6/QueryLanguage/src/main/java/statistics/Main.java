@@ -8,23 +8,20 @@ public class Main {
 
         Statistics stats = new Statistics(new PlayerReaderImpl(url));
           
-//        Matcher m = new And( new HasAtLeast(5, "goals"),
-//                             new HasAtLeast(5, "assists"),
-//                             new PlaysIn("PHI")
-//        );
 
-        Matcher m = new And(
-    new HasAtLeast(40, "points"),
-    new Or( 
-        new PlaysIn("NYR"),
-        new PlaysIn("NYI"),
-        new PlaysIn("BOS")
-    )
-); 
+            QueryBuilder query = new QueryBuilder();
+//             Matcher b = query.playsIn("NYR").build();
+//             
+          // Matcher m = query.build();
+
+            Matcher m = query.playsIn("NYR")
+                     .hasAtLeast(5, "goals")
+                     .hasFewerThan(10, "goals").build();
+ 
+            for (Player player : stats.matches(m)) {
+                System.out.println( player );
+            }
 
         
-        for (Player player : stats.matches(m)) {
-            System.out.println(player);
-        }
     }
 }

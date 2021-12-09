@@ -8,8 +8,10 @@ public class HasAtLeast implements Matcher {
     
     private int value;
     private String fieldName;
+    Matcher m;
 
     public HasAtLeast(int value, String category) {
+        this.m = m;
         this.value = value;
         fieldName = "get"+Character.toUpperCase(category.charAt(0))+category.substring(1, category.length());
     }
@@ -26,6 +28,6 @@ public class HasAtLeast implements Matcher {
             throw new IllegalStateException("Player does not have field "+fieldName.substring(3, fieldName.length()).toLowerCase());
         }       
         
-    }    
-    
+    }  
+   
 }

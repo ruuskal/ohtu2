@@ -5,6 +5,7 @@ import statistics.Player;
 
 public class PlaysIn implements Matcher {
     private String team;
+    private Matcher m;
 
     public PlaysIn(String team) {
         this.team = team;
@@ -15,4 +16,8 @@ public class PlaysIn implements Matcher {
         return p.getTeam().contains(team);
     }
     
+//    public Matcher build() {
+//        System.out.println("PLAYSIN");
+//        return new QueryBuilder();
+//    }
 }
